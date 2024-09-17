@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 const App = () => {
   const friends = [
     { name: 'Peter', age: 4 },
