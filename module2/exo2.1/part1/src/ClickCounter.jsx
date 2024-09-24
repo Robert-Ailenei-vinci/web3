@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 const ClickCounter = ({ masterMessage, messageHover }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(JSON.parse(localStorage.getItem("count")));
   const [hoverMessage, setHoverMessage] = useState("");
 
   // Fonction appelée quand la souris entre dans le bouton
@@ -15,13 +15,22 @@ const ClickCounter = ({ masterMessage, messageHover }) => {
     setHoverMessage("");
   };
 
+  const handleCount = () => {
+    setCount((prevCount) => {
+      const newCount = prevCount + 1;
+      localStorage.setItem("count", JSON.stringify(newCount)); // Mettre à jour le localStorage après la mise à jour du state
+      return newCount;
+    });
+  };
+
   return (
     <div className="card">
       <button
-        onClick={() => setCount((count) => count + 1)}
+        onClick={handleCount}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
+        
         count is {count}
       </button>
       {hoverMessage && <p>{hoverMessage}</p>}
