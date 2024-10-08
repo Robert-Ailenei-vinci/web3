@@ -21,11 +21,6 @@ const Button = (props) => {
     )
 }
 
-const StatsText = (props) => {
-    return(
-        <h3>{props.text} : {props.value}</h3>
-    )
-}
 
 const StatsAll = (props) => {
     const {Good, Neutral, Bad, Somme} = props;
@@ -33,10 +28,14 @@ const StatsAll = (props) => {
     const pourcent= (Good/all)*100 
     const moyenne= Somme/all;
     return(
-        <h3>all: {all} <br />
-        average : {moyenne} <br />
-        Positive feedback : {pourcent}  %      
-        </h3>
+        <div>
+      <h3>Good: {Good}</h3>
+      <h3>Neutral: {Neutral}</h3>
+      <h3>Bad: {Bad}</h3>
+      <h3>All: {Somme}</h3>
+      <h3>Average: {moyenne.toFixed(2)}</h3>
+      <h3>Positive feedback: {pourcent.toFixed(2)}%</h3>
+    </div>
     )
 }
 
@@ -77,9 +76,6 @@ const App = () => {
         <Button handleClick={()=> handleBad()} text="Bad"/>
 
         <StatsTitl/>
-        <StatsText text="Good" value={good}/>
-        <StatsText text="Neutral" value={neutral}/>
-        <StatsText text="Bad" value={bad}/>
         <StatsAll  Good={good}  Neutral={neutral} Bad = {bad} Somme={somme}/>
     </div>
   )
