@@ -22,9 +22,17 @@ const Button = (props) => {
 }
 
 
+
+
 const StatsAll = (props) => {
     const {Good, Neutral, Bad, Somme} = props;
-    const all=Good+Neutral+Bad;
+    let all=0;
+    all=Good+Neutral+Bad;
+    if(all === 0){
+        return(
+            <h3>No feedback yet</h3>
+        )
+    }
     const pourcent= (Good/all)*100 
     const moyenne= Somme/all;
     return(
